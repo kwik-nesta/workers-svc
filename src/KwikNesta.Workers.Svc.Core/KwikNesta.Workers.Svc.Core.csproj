@@ -1,16 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk.Worker">
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>dotnet-KwikNesta.Workers.Svc.Core-45ca93bb-6502-46d0-8ede-a7d68013e79e</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
 	<PackageReference Include="CrossQueue.Hub" Version="1.1.8" />
 	<PackageReference Include="DiagnosKit.Core" Version="2.2.2" />
 	<PackageReference Include="KwikNesta.Contracts.Core" Version="1.1.2" />
+	<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
   </ItemGroup>
 
   <ItemGroup>
