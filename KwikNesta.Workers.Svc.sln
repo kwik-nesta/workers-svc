@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{669C728D-877
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KwikNesta.Workers.Svc.Core", "src\KwikNesta.Workers.Svc.Core\KwikNesta.Workers.Svc.Core.csproj", "{4D9F1C4C-697A-45C7-9D67-AFB2C99AE990}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KwikNesta.Workers.Svc.Application", "src\KwikNesta.Workers.Svc.Application\KwikNesta.Workers.Svc.Application.csproj", "{FFB46493-F1F3-43F6-A352-56552C242397}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +19,17 @@ Global
 		{4D9F1C4C-697A-45C7-9D67-AFB2C99AE990}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D9F1C4C-697A-45C7-9D67-AFB2C99AE990}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D9F1C4C-697A-45C7-9D67-AFB2C99AE990}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFB46493-F1F3-43F6-A352-56552C242397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFB46493-F1F3-43F6-A352-56552C242397}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFB46493-F1F3-43F6-A352-56552C242397}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFB46493-F1F3-43F6-A352-56552C242397}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4D9F1C4C-697A-45C7-9D67-AFB2C99AE990} = {669C728D-8778-4C07-B961-D36C11FE2C05}
+		{FFB46493-F1F3-43F6-A352-56552C242397} = {669C728D-8778-4C07-B961-D36C11FE2C05}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF0CEC67-4221-4AA7-8F30-575AB6EDD2EE}
