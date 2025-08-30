@@ -56,7 +56,7 @@ jobs:
             --build-arg BUILD_CONFIGURATION=Release \
             -t ${{ secrets.HUB_USERNAME }}/kwik-nesta.workers.svc:${{ steps.get_latest_tag.outputs.tag }} \
             -t ${{ secrets.HUB_USERNAME }}/kwik-nesta.workers.svc:test \
-            -f src/KwikNestaIdentity.Svc.API/Dockerfile .
+            -f src/KwikNesta.Workers.Svc.Core/Dockerfile .
 
       - name: Push Docker Images to Docker Hub
         run: |
