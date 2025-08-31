@@ -8,6 +8,7 @@ using KwikNesta.Workers.Svc.Application.Implementations;
 using CrossQueue.Hub.Shared.Extensions;
 using EFCore.CrudKit.Library.Extensions;
 using EFCore.CrudKit.Library.Models.Enums;
+using Polly;
 
 namespace KwikNesta.Workers.Svc.Core.Extensions
 {
@@ -19,13 +20,27 @@ namespace KwikNesta.Workers.Svc.Core.Extensions
         {
             services.ConfigureMongoEFCoreDataForge(configuration, idSerializationMode: IdSerializationMode.Guid);
             services.AddLoggerManager();
-            services.AddHostedService<EmailNotificationWorker>()
-                .AddHostedService<AuditLoggerWorker>()
+            services.AddHttpClient("LocationService", client =>
+            {
+                client.BaseAddress = new Uri(configuration["ExternalServices:LocationMarker"]!);
+                client.Timeout = TimeSpan.FromMinutes(2);
+            }).AddTransientHttpErrorPolicy(policy => policy.WaitAndRetryAsync(3, attempt => TimeSpan.FromSeconds(10)));
+
+            services.RegisterWorkers()
                 .AddScoped<IMessageHandler, MessageHandler>()
-                .AddScoped<IEmailNotificationService, EmailNotificationService>()
+                .AddScoped<IServiceManager, ServiceManager>()
                 .ConfigureMailJet(configuration)
                 .AddCrossQueueHubRabbitMqBus(configuration)
                 .AddDiagnosKitObservability(serviceName: serviceName, serviceVersion: "1.0.0");
+
+            return services;
+        }
+
+        private static IServiceCollection RegisterWorkers(this IServiceCollection services)
+        {
+            services.AddHostedService<EmailNotificationWorker>()
+               .AddHostedService<AuditLoggerWorker>()
+               .AddHostedService<LocationLoaderWorker>();
 
             return services;
         }

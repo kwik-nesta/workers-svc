@@ -6,5 +6,6 @@ namespace KwikNesta.Workers.Svc.Core.Handlers.Interfaces
     {
         Task HandleAsync(NotificationMessage message);
         Task HandleAsync(AuditLog message);
+        Task HandleAsync(DataLoadRequest message);
     }
 }
