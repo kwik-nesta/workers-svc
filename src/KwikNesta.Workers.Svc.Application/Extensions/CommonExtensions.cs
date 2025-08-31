@@ -1,4 +1,5 @@
-﻿using CSharpTypes.Extensions.Object;
+﻿using CSharpTypes.Extensions.Guid;
+using CSharpTypes.Extensions.Object;
 using CSharpTypes.Extensions.String;
 using KwikNesta.Contracts.Enums;
 using KwikNesta.Contracts.Models;
@@ -14,11 +15,11 @@ namespace KwikNesta.Workers.Svc.Application.Extensions
                 EmailType.AccountActivation => "account-activation",
                 EmailType.AccountDeactivation => "account-deactivation",
                 EmailType.AccountReactivation => "account-reactivation",
-                EmailType.AccountReactivationNotification => "account-reactivation-notification",
+                EmailType.AccountReactivationNotification => "account-reactivation-audit",
                 EmailType.AccountSuspension => "account-suspension",
                 EmailType.AdminAccountReactivation => "admin-account-reactivation",
                 EmailType.PasswordReset => "password-reset",
-                EmailType.PasswordResetNotification => "password-reset-notification",
+                EmailType.PasswordResetNotification => "password-reset-audit",
                 _ => throw new NotImplementedException()
             };
         }
@@ -55,6 +56,21 @@ namespace KwikNesta.Workers.Svc.Application.Extensions
             }
 
             if (notification.Type is EmailType.AccountSuspension && !string.IsNullOrWhiteSpace(notification.Reason))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public static bool ValidatePayload(this AuditLog audit)
+        {
+            if (audit == null)
+            {
+                return false;
+            }
+
+            if (audit.DomainId.IsEmpty() || audit.PerformedBy.IsNullOrEmpty() || audit.PerformedOnProfileId.IsNullOrEmpty())
             {
                 return false;
             }

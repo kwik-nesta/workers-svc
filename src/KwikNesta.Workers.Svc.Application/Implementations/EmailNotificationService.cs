@@ -31,12 +31,14 @@ namespace KwikNesta.Workers.Svc.Application.Implementations
             if (!valid)
             {
                 _logger.LogWarn("Invalid notification payload");
+                return;
             }
 
             var template = notification.Type.LoadTemplate(_templateRoot);
             if (template.IsNullOrEmpty())
             {
                 _logger.LogWarn("The template returned an empty string");
+                return;
             }
 
             var body = template.Replace("{{FirstName}}", notification.ReceipientName)
@@ -48,10 +50,12 @@ namespace KwikNesta.Workers.Svc.Application.Implementations
             if (isSent)
             {
                 _logger.LogInfo("Account activation notification email successfully sent to {EmailAddress}", notification.EmailAddress);
+                return;
             }
             else
             {
                 _logger.LogWarn("Account activation notification email failed for {EmailAddress}", notification.EmailAddress);
+                return;
             }
         }
 
@@ -61,12 +65,14 @@ namespace KwikNesta.Workers.Svc.Application.Implementations
             if (!valid)
             {
                 _logger.LogWarn("Invalid notification payload");
+                return;
             }
 
             var template = notification.Type.LoadTemplate(_templateRoot);
             if (template.IsNullOrEmpty())
             {
                 _logger.LogWarn("The template returned an empty string");
+                return;
             }
 
             var body = template.Replace("{{FirstName}}", notification.ReceipientName)
@@ -78,10 +84,12 @@ namespace KwikNesta.Workers.Svc.Application.Implementations
             if (isSent)
             {
                 _logger.LogInfo("Password reset email successfully sent to {EmailAddress}", notification.EmailAddress);
+                return;
             }
             else
             {
                 _logger.LogWarn("Password reset email failed for {EmailAddress}", notification.EmailAddress);
+                return;
             }
         }
 
@@ -91,12 +99,14 @@ namespace KwikNesta.Workers.Svc.Application.Implementations
             if (!valid)
             {
                 _logger.LogWarn("Invalid notification payload");
+                return;
             }
 
             var template = notification.Type.LoadTemplate(_templateRoot);
             if (template.IsNullOrEmpty())
             {
                 _logger.LogWarn("The template returned an empty string");
+                return;
             }
 
             var body = template.Replace("{{FirstName}}", notification.ReceipientName)
@@ -106,10 +116,12 @@ namespace KwikNesta.Workers.Svc.Application.Implementations
             if (isSent)
             {
                 _logger.LogInfo("Password reset notification email successfully sent to {EmailAddress}", notification.EmailAddress);
+                return;
             }
             else
             {
                 _logger.LogWarn("Password reset notification email failed for {EmailAddress}", notification.EmailAddress);
+                return;
             }
         }
 
@@ -119,12 +131,14 @@ namespace KwikNesta.Workers.Svc.Application.Implementations
             if (!valid)
             {
                 _logger.LogWarn("Invalid notification payload");
+                return;
             }
 
             var template = notification.Type.LoadTemplate(_templateRoot);
             if (template.IsNullOrEmpty())
             {
                 _logger.LogWarn("The template returned an empty string");
+                return;
             }
 
             var now = DateTime.UtcNow;
@@ -136,10 +150,12 @@ namespace KwikNesta.Workers.Svc.Application.Implementations
             if (isSent)
             {
                 _logger.LogInfo("Account deactivation notification email successfully sent to {EmailAddress}", notification.EmailAddress);
+                return;
             }
             else
             {
                 _logger.LogWarn("Account deactivation notification email failed for {EmailAddress}", notification.EmailAddress);
+                return;
             }
         }
 
@@ -149,12 +165,14 @@ namespace KwikNesta.Workers.Svc.Application.Implementations
             if (!valid)
             {
                 _logger.LogWarn("Invalid notification payload");
+                return;
             }
 
             var template = notification.Type.LoadTemplate(_templateRoot);
             if (template.IsNullOrEmpty())
             {
                 _logger.LogWarn("The template returned an empty string");
+                return;
             }
 
             var now = DateTime.UtcNow;
@@ -167,10 +185,12 @@ namespace KwikNesta.Workers.Svc.Application.Implementations
             if (isSent)
             {
                 _logger.LogInfo("Account reactivation OTP email successfully sent to {EmailAddress}", notification.EmailAddress);
+                return;
             }
             else
             {
                 _logger.LogWarn("Account reactivation OTP email failed for {EmailAddress}", notification.EmailAddress);
+                return;
             }
         }
 
@@ -180,12 +200,14 @@ namespace KwikNesta.Workers.Svc.Application.Implementations
             if (!valid)
             {
                 _logger.LogWarn("Invalid notification payload");
+                return;
             }
 
             var template = notification.Type.LoadTemplate(_templateRoot);
             if (template.IsNullOrEmpty())
             {
                 _logger.LogWarn("The template returned an empty string");
+                return;
             }
 
             var body = template.Replace("{{FirstName}}", notification.ReceipientName)
@@ -195,10 +217,12 @@ namespace KwikNesta.Workers.Svc.Application.Implementations
             if (isSent)
             {
                 _logger.LogInfo("Account suspension notification email successfully sent to {EmailAddress}", notification.EmailAddress);
+                return;
             }
             else
             {
                 _logger.LogWarn("Account suspension notification email failed for {EmailAddress}", notification.EmailAddress);
+                return;
             }
         }
 
@@ -208,12 +232,14 @@ namespace KwikNesta.Workers.Svc.Application.Implementations
             if (!valid)
             {
                 _logger.LogWarn("Invalid notification payload");
+                return;
             }
 
             var template = notification.Type.LoadTemplate(_templateRoot);
             if (template.IsNullOrEmpty())
             {
                 _logger.LogWarn("The template returned an empty string");
+                return;
             }
 
             var body = template.Replace("{{FirstName}}", notification.ReceipientName)
@@ -224,10 +250,12 @@ namespace KwikNesta.Workers.Svc.Application.Implementations
             if (isSent)
             {
                 _logger.LogInfo("Account suspension notification email successfully sent to {EmailAddress}", notification.EmailAddress);
+                return;
             }
             else
             {
                 _logger.LogWarn("Account suspension notification email failed for {EmailAddress}", notification.EmailAddress);
+                return;
             }
         }
 
@@ -237,12 +265,14 @@ namespace KwikNesta.Workers.Svc.Application.Implementations
             if (!valid)
             {
                 _logger.LogWarn("Invalid notification payload");
+                return;
             }
 
             var template = notification.Type.LoadTemplate(_templateRoot);
             if (template.IsNullOrEmpty())
             {
                 _logger.LogWarn("The template returned an empty string");
+                return;
             }
 
             var body = template.Replace("{{FirstName}}", notification.ReceipientName)
@@ -252,10 +282,12 @@ namespace KwikNesta.Workers.Svc.Application.Implementations
             if (isSent)
             {
                 _logger.LogInfo("Account suspension lift notification email successfully sent to {EmailAddress}", notification.EmailAddress);
+                return;
             }
             else
             {
                 _logger.LogWarn("Account suspension lift notification email failed for {EmailAddress}", notification.EmailAddress);
+                return;
             }
         }
     }
