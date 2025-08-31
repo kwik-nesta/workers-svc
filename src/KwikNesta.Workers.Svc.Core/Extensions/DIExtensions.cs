@@ -6,6 +6,8 @@ using KwikNesta.Workers.Svc.Core.Workers;
 using KwikNesta.Workers.Svc.Application.Interfaces;
 using KwikNesta.Workers.Svc.Application.Implementations;
 using CrossQueue.Hub.Shared.Extensions;
+using EFCore.CrudKit.Library.Extensions;
+using EFCore.CrudKit.Library.Models.Enums;
 
 namespace KwikNesta.Workers.Svc.Core.Extensions
 {
@@ -15,9 +17,10 @@ namespace KwikNesta.Workers.Svc.Core.Extensions
                                                          IConfiguration configuration,
                                                          string serviceName)
         {
-            var jwtSection = configuration.GetSection("Jwt");
+            services.ConfigureMongoEFCoreDataForge(configuration, idSerializationMode: IdSerializationMode.Guid);
             services.AddLoggerManager();
             services.AddHostedService<EmailNotificationWorker>()
+                .AddHostedService<AuditLoggerWorker>()
                 .AddScoped<IMessageHandler, MessageHandler>()
                 .AddScoped<IEmailNotificationService, EmailNotificationService>()
                 .ConfigureMailJet(configuration)
