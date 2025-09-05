@@ -15,11 +15,11 @@ namespace KwikNesta.Workers.Svc.Application.Extensions
                 EmailType.AccountActivation => "account-activation",
                 EmailType.AccountDeactivation => "account-deactivation",
                 EmailType.AccountReactivation => "account-reactivation",
-                EmailType.AccountReactivationNotification => "account-reactivation-audit",
+                EmailType.AccountReactivationNotification => "account-reactivation-notification",
                 EmailType.AccountSuspension => "account-suspension",
                 EmailType.AdminAccountReactivation => "admin-account-reactivation",
                 EmailType.PasswordReset => "password-reset",
-                EmailType.PasswordResetNotification => "password-reset-audit",
+                EmailType.PasswordResetNotification => "password-reset-notification",
                 _ => throw new NotImplementedException()
             };
         }
@@ -55,7 +55,7 @@ namespace KwikNesta.Workers.Svc.Application.Extensions
                 }
             }
 
-            if (notification.Type is EmailType.AccountSuspension && !string.IsNullOrWhiteSpace(notification.Reason))
+            if (notification.Type is EmailType.AccountSuspension && string.IsNullOrWhiteSpace(notification.Reason))
             {
                 return false;
             }
